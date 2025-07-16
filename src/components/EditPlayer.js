@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 
-const AddPlayer = ({ addPlayerFunction }) => {
-    const initialPlayer = { id: null, name: '', club: '' }
-    const [newPlayer, setNewPlayer] = useState(initialPlayer)
+const EditPlayer = ({ setIsEditing, playerBeingEdited, editPlayerFunction }) => {
+    const [newPlayer, setNewPlayer] = useState(playerBeingEdited)
 
     const handleChange = e => {
         const { name, value } = e.target
@@ -12,13 +11,13 @@ const AddPlayer = ({ addPlayerFunction }) => {
     const handleSubmit = e => {
         e.preventDefault()
         if (!newPlayer.name || !newPlayer.club) return
-        addPlayerFunction(newPlayer)
-        setNewPlayer(initialPlayer)
+        editPlayerFunction(newPlayer, newPlayer.id)
+        setIsEditing(false)
     }
 
     return (
         <div style={{ textAlign: 'center' }}>
-            <h3>Add a player</h3>
+            <h3>Editing a player</h3>
             <form onSubmit={handleSubmit}>
                 <input
                     type='text'
@@ -34,10 +33,10 @@ const AddPlayer = ({ addPlayerFunction }) => {
                     onChange={handleChange}
                     value={newPlayer.club}
                 />
-                <button>Add player</button>
+                <button>Edit player</button>
             </form>
         </div>
     )
 }
 
-export default AddPlayer
+export default EditPlayer
