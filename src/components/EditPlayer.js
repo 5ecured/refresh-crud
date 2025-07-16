@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 const EditPlayer = ({ setIsEditing, playerBeingEdited, editPlayerFunction }) => {
     const [newPlayer, setNewPlayer] = useState(playerBeingEdited)
@@ -14,6 +14,10 @@ const EditPlayer = ({ setIsEditing, playerBeingEdited, editPlayerFunction }) => 
         editPlayerFunction(newPlayer, newPlayer.id)
         setIsEditing(false)
     }
+
+    useEffect(() => {
+        setNewPlayer(playerBeingEdited)
+    }, [playerBeingEdited])
 
     return (
         <div style={{ textAlign: 'center' }}>
