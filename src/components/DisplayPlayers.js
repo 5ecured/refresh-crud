@@ -1,20 +1,18 @@
 import React from 'react'
-import data from '../data'
 import '../App.css'
 
-const DisplayPlayers = () => {
-    const toDisplay = data.map(el => {
+const DisplayPlayers = ({ playersToDisplay }) => {
+    const toDisplay = playersToDisplay.map(el => {
         return (
-            <>
-                <p key={el.id}>
-                    {el.name} - {el.club}
-                </p>
-            </>
+            <p key={el.id}>
+                {el.name} - {el.club}
+            </p>
         )
     })
 
     return (
         <div style={{ textAlign: 'center' }}>
+            <h3>Players</h3>
             {toDisplay}
         </div>
     )
