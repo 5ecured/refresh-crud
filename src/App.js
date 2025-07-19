@@ -4,6 +4,7 @@ import DisplayPlayers from './components/DisplayPlayers'
 import AddPlayer from './components/AddPlayer'
 import EditPlayer from './components/EditPlayer'
 import Filter from './components/Filter'
+import FilteredPlayers from './components/FilteredPlayers'
 
 const App = () => {
   const initialData = [
@@ -120,14 +121,28 @@ const App = () => {
         :
         <AddPlayer addPlayerFunction={addPlayerFunction} />
       }
-      <DisplayPlayers
-        playersToDisplay={players}
-        deletePlayerFunction={deletePlayerFunction}
-        whichPlayerToEdit={whichPlayerToEdit}
-        toggleImportant={toggleImportant}
-        playersLength={players.length}
-        toggleImportantAll={toggleImportantAll}
-      />
+
+      {
+        filteredPlayer.length > 0 ?
+          <FilteredPlayers
+            playersToDisplay={players}
+            deletePlayerFunction={deletePlayerFunction}
+            whichPlayerToEdit={whichPlayerToEdit}
+            toggleImportant={toggleImportant}
+            playersLength={players.length}
+            toggleImportantAll={toggleImportantAll}
+            filteredPlayer={filteredPlayer}
+          />
+          :
+          <DisplayPlayers
+            playersToDisplay={players}
+            deletePlayerFunction={deletePlayerFunction}
+            whichPlayerToEdit={whichPlayerToEdit}
+            toggleImportant={toggleImportant}
+            playersLength={players.length}
+            toggleImportantAll={toggleImportantAll}
+          />
+      }
     </>
   )
 }
