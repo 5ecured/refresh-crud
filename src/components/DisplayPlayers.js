@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css'
 
-const DisplayPlayers = ({ playersToDisplay, deletePlayerFunction, whichPlayerToEdit, toggleImportant, playersLength, toggleImportantAll }) => {
+const DisplayPlayers = ({ playersToDisplay, deletePlayerFunction, whichPlayerToEdit, toggleImportant, playersLength, toggleImportantAll, showAll, setShowAll }) => {
     const toDisplay = playersToDisplay.map(el => {
         return (
             <tr key={el.id} style={{
@@ -21,6 +21,7 @@ const DisplayPlayers = ({ playersToDisplay, deletePlayerFunction, whichPlayerToE
         <div style={{ textAlign: 'center' }}>
             <h3>Showing all players ({playersLength})</h3>
             <button onClick={() => toggleImportantAll()}>Make all players important</button>
+            <button onClick={() => setShowAll(!showAll)}>Show {showAll ? 'only important' : 'all'} players</button>
             <div style={{ display: 'flex', justifyContent: 'center', textAlign: 'center', marginTop: '20px' }}>
                 <table>
                     <tr style={{ backgroundColor: 'black', color: 'white' }}>

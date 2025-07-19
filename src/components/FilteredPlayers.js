@@ -1,7 +1,7 @@
 import React from 'react'
 import '../App.css'
 
-const FilteredPlayers = ({ playersToDisplay, deletePlayerFunction, whichPlayerToEdit, toggleImportant, playersLength, toggleImportantAll, filteredPlayer }) => {
+const FilteredPlayers = ({ playersToDisplay, deletePlayerFunction, whichPlayerToEdit, toggleImportant, toggleImportantAll, filteredPlayer, showAll, setShowAll }) => {
     const displayFilteredPlayers = playersToDisplay.filter(player => (
         player.name.toUpperCase().includes(filteredPlayer.toUpperCase()) ||
         player.name.toLowerCase().includes(filteredPlayer.toLowerCase()) ||
@@ -29,6 +29,7 @@ const FilteredPlayers = ({ playersToDisplay, deletePlayerFunction, whichPlayerTo
         <div style={{ textAlign: 'center' }}>
             <h3>Showing filtered players ({toDisplay.length})</h3>
             <button onClick={() => toggleImportantAll()}>Make all players important</button>
+            <button onClick={() => setShowAll(!showAll)}>Show {showAll ? 'only important' : 'all'} players</button>
             <div style={{ display: 'flex', justifyContent: 'center', textAlign: 'center', marginTop: '20px' }}>
                 <table>
                     <tr style={{ backgroundColor: 'black', color: 'white' }}>

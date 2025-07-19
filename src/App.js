@@ -42,6 +42,7 @@ const App = () => {
 
   const [filteredPlayer, setFilteredPlayer] = useState('')
 
+  const [showAll, setShowAll] = useState(true)
 
   const addPlayerFunction = (newPlayerObject) => {
     newPlayerObject.id = players.length + 1
@@ -107,6 +108,8 @@ const App = () => {
     }
   }
 
+  const playersToDisplay = showAll ? players : players.filter(player => player.important)
+
   return (
     <>
       <h2 className='center'>Football CRUD with React hooks</h2>
@@ -125,22 +128,26 @@ const App = () => {
       {
         filteredPlayer.length > 0 ?
           <FilteredPlayers
-            playersToDisplay={players}
+            playersToDisplay={playersToDisplay}
             deletePlayerFunction={deletePlayerFunction}
             whichPlayerToEdit={whichPlayerToEdit}
             toggleImportant={toggleImportant}
             playersLength={players.length}
             toggleImportantAll={toggleImportantAll}
             filteredPlayer={filteredPlayer}
+            showAll={showAll}
+            setShowAll={setShowAll}
           />
           :
           <DisplayPlayers
-            playersToDisplay={players}
+            playersToDisplay={playersToDisplay}
             deletePlayerFunction={deletePlayerFunction}
             whichPlayerToEdit={whichPlayerToEdit}
             toggleImportant={toggleImportant}
             playersLength={players.length}
             toggleImportantAll={toggleImportantAll}
+            showAll={showAll}
+            setShowAll={setShowAll}
           />
       }
     </>
