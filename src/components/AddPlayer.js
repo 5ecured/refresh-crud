@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 const AddPlayer = ({ addPlayerFunction }) => {
-    const initialPlayer = { id: null, name: '', club: '' }
+    const initialPlayer = { id: null, name: '', country: '' }
     const [newPlayer, setNewPlayer] = useState(initialPlayer)
 
     const handleChange = e => {
@@ -11,7 +11,7 @@ const AddPlayer = ({ addPlayerFunction }) => {
 
     const handleSubmit = e => {
         e.preventDefault()
-        if (!newPlayer.name || !newPlayer.club) return
+        if (!newPlayer.name || !newPlayer.country) return
         addPlayerFunction(newPlayer)
         setNewPlayer(initialPlayer)
     }
@@ -29,10 +29,10 @@ const AddPlayer = ({ addPlayerFunction }) => {
                 />
                 <input
                     type='text'
-                    name='club'
-                    placeholder='Enter club name'
+                    name='country'
+                    placeholder='Enter country name'
                     onChange={handleChange}
-                    value={newPlayer.club}
+                    value={newPlayer.country}
                 />
                 <button>Add player</button>
             </form>

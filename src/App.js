@@ -7,26 +7,27 @@ import EditPlayer from './components/EditPlayer'
 const App = () => {
   const initialData = [
     {
-      id: 1, name: 'cristiano ronaldo', club: 'real madrid'
+      id: 1, name: 'cristiano ronaldo', country: 'portugal'
     },
     {
-      id: 2, name: 'lionel messi', club: 'barcelona'
+      id: 2, name: 'lionel messi', country: 'argentina'
     },
     {
-      id: 3, name: 'novak djokovic', club: 'serbia'
+      id: 3, name: 'novak djokovic', country: 'serbia'
     },
     {
-      id: 4, name: 'rafael nadal', club: 'spain'
+      id: 4, name: 'rafael nadal', country: 'spain'
     },
     {
-      id: 5, name: 'roger federer', club: 'swiss'
+      id: 5, name: 'roger federer', country: 'swiss'
     },
   ]
 
   const [players, setPlayers] = useState(initialData)
   const [isEditing, setIsEditing] = useState(false)
+  const [isImportant, setIsImportant] = useState(false)
 
-  const initialPlayer = { id: null, name: '', club: '' }
+  const initialPlayer = { id: null, name: '', country: '' }
   const [playerBeingEdited, setPlayerBeingEdited] = useState(initialPlayer)
 
   const addPlayerFunction = (newPlayerObject) => {
@@ -41,7 +42,7 @@ const App = () => {
 
   const whichPlayerToEdit = (player) => {
     setIsEditing(true)
-    setPlayerBeingEdited({ id: player.id, name: player.name, club: player.club })
+    setPlayerBeingEdited({ id: player.id, name: player.name, country: player.country })
   }
 
   const editPlayerFunction = (editedPlayer, id) => {
@@ -67,6 +68,8 @@ const App = () => {
         playersToDisplay={players}
         deletePlayerFunction={deletePlayerFunction}
         whichPlayerToEdit={whichPlayerToEdit}
+        isImportant={isImportant}
+        setIsImportant={setIsImportant}
       />
     </>
   )

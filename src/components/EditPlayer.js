@@ -10,7 +10,7 @@ const EditPlayer = ({ setIsEditing, playerBeingEdited, editPlayerFunction }) => 
 
     const handleSubmit = e => {
         e.preventDefault()
-        if (!newPlayer.name || !newPlayer.club) return
+        if (!newPlayer.name || !newPlayer.country) return
         editPlayerFunction(newPlayer, newPlayer.id)
         setIsEditing(false)
     }
@@ -32,10 +32,10 @@ const EditPlayer = ({ setIsEditing, playerBeingEdited, editPlayerFunction }) => 
                 />
                 <input
                     type='text'
-                    name='club'
-                    placeholder='Enter club name'
+                    name='country'
+                    placeholder='Enter country'
                     onChange={handleChange}
-                    value={newPlayer.club}
+                    value={newPlayer.country}
                 />
                 <button>Edit player</button>
             </form>
