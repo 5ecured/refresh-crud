@@ -21,6 +21,15 @@ const App = () => {
     {
       id: 5, name: 'roger federer', country: 'swiss', important: false
     },
+    {
+      id: 6, name: 'fernando torres', country: 'spain', important: true
+    },
+    {
+      id: 7, name: 'thierry henry', country: 'france', important: false
+    },
+    {
+      id: 8, name: 'gianluigi buffon', country: 'italy', important: true
+    },
   ]
 
   const [players, setPlayers] = useState(initialData)
@@ -63,6 +72,36 @@ const App = () => {
     setPlayers(temp)
   }
 
+  const toggleImportantAll = () => {
+    let importantPlayers = 0
+
+    players.forEach(player => {
+      if (player.important) importantPlayers += 1
+    })
+
+    if (players.length !== importantPlayers) {
+      const temp = players.map(player => (
+        {
+          id: player.id,
+          name: player.name,
+          country: player.country,
+          important: true
+        }
+      ))
+      setPlayers(temp)
+    } else {
+      const temp = players.map(player => (
+        {
+          id: player.id,
+          name: player.name,
+          country: player.country,
+          important: false
+        }
+      ))
+      setPlayers(temp) 
+    }
+  }
+
   return (
     <>
       <h2 className='center'>Football CRUD with React hooks</h2>
@@ -80,9 +119,9 @@ const App = () => {
         playersToDisplay={players}
         deletePlayerFunction={deletePlayerFunction}
         whichPlayerToEdit={whichPlayerToEdit}
-        // isImportant={isImportant}
-        // setIsImportant={setIsImportant}
         toggleImportant={toggleImportant}
+        playersLength={players.length}
+        toggleImportantAll={toggleImportantAll}
       />
     </>
   )
