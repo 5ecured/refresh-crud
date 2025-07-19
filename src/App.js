@@ -7,25 +7,24 @@ import EditPlayer from './components/EditPlayer'
 const App = () => {
   const initialData = [
     {
-      id: 1, name: 'cristiano ronaldo', country: 'portugal'
+      id: 1, name: 'cristiano ronaldo', country: 'portugal', important: true
     },
     {
-      id: 2, name: 'lionel messi', country: 'argentina'
+      id: 2, name: 'lionel messi', country: 'argentina', important: false
     },
     {
-      id: 3, name: 'novak djokovic', country: 'serbia'
+      id: 3, name: 'novak djokovic', country: 'serbia', important: true
     },
     {
-      id: 4, name: 'rafael nadal', country: 'spain'
+      id: 4, name: 'rafael nadal', country: 'spain', important: true
     },
     {
-      id: 5, name: 'roger federer', country: 'swiss'
+      id: 5, name: 'roger federer', country: 'swiss', important: false
     },
   ]
 
   const [players, setPlayers] = useState(initialData)
   const [isEditing, setIsEditing] = useState(false)
-  const [isImportant, setIsImportant] = useState(false)
 
   const initialPlayer = { id: null, name: '', country: '' }
   const [playerBeingEdited, setPlayerBeingEdited] = useState(initialPlayer)
@@ -51,6 +50,19 @@ const App = () => {
     setPlayers(newArray)
   }
 
+  const toggleImportant = (id) => {
+    // find the index of the player that will be toggled
+    const temp = [...players]
+    let i = 0
+
+    players.forEach((player, index) => {
+      if (player.id === id) i = index
+    })
+
+    temp[i].important = !temp[i].important
+    setPlayers(temp)
+  }
+
   return (
     <>
       <h2 className='center'>Football CRUD with React hooks</h2>
@@ -68,8 +80,9 @@ const App = () => {
         playersToDisplay={players}
         deletePlayerFunction={deletePlayerFunction}
         whichPlayerToEdit={whichPlayerToEdit}
-        isImportant={isImportant}
-        setIsImportant={setIsImportant}
+        // isImportant={isImportant}
+        // setIsImportant={setIsImportant}
+        toggleImportant={toggleImportant}
       />
     </>
   )

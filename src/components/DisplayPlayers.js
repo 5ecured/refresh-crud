@@ -1,22 +1,16 @@
 import React from 'react'
 import '../App.css'
 
-const DisplayPlayers = ({ playersToDisplay, deletePlayerFunction, whichPlayerToEdit, isImportant, setIsImportant }) => {
+const DisplayPlayers = ({ playersToDisplay, deletePlayerFunction, whichPlayerToEdit, toggleImportant }) => {
     const toDisplay = playersToDisplay.map(el => {
-        // return (
-        //     <p key={el.id}>
-        //         {el.name} - {el.country}
-        //         <button onClick={() => setIsImportant(!isImportant)}>Important</button>
-        //         <button onClick={() => whichPlayerToEdit(el)}>Edit</button>
-        //         <button onClick={() => deletePlayerFunction(el.id)}>Delete</button>
-        //     </p>
-        // )
         return (
-            <tr key={el.id}>
+            <tr key={el.id} style={{
+                backgroundColor: el.important ? 'lightgreen' : ''
+            }}>
                 <td>{el.id}</td>
                 <td>{el.name}</td>
                 <td>{el.country}</td>
-                <td><button onClick={() => setIsImportant(!isImportant)}>Important</button></td>
+                <td><button onClick={() => toggleImportant(el.id)}>Important</button></td>
                 <td><button onClick={() => whichPlayerToEdit(el)}>Edit</button></td>
                 <td><button onClick={() => deletePlayerFunction(el.id)}>Delete</button></td>
             </tr>
