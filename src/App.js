@@ -3,6 +3,7 @@ import './App.css'
 import DisplayPlayers from './components/DisplayPlayers'
 import AddPlayer from './components/AddPlayer'
 import EditPlayer from './components/EditPlayer'
+import Filter from './components/Filter'
 
 const App = () => {
   const initialData = [
@@ -37,6 +38,9 @@ const App = () => {
 
   const initialPlayer = { id: null, name: '', country: '' }
   const [playerBeingEdited, setPlayerBeingEdited] = useState(initialPlayer)
+
+  const [filteredPlayer, setFilteredPlayer] = useState('')
+
 
   const addPlayerFunction = (newPlayerObject) => {
     newPlayerObject.id = players.length + 1
@@ -98,7 +102,7 @@ const App = () => {
           important: false
         }
       ))
-      setPlayers(temp) 
+      setPlayers(temp)
     }
   }
 
@@ -106,6 +110,7 @@ const App = () => {
     <>
       <h2 className='center'>Football CRUD with React hooks</h2>
       <hr />
+      <Filter filteredPlayer={filteredPlayer} setFilteredPlayer={setFilteredPlayer} />
       {isEditing ?
         <EditPlayer
           setIsEditing={setIsEditing}
